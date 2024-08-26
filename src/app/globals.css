@@ -2,15 +2,25 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components {
+  .scrollBar {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE 10+ */
+  }
+
+  .scrollBar::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+  }
+}
 
 @font-face {
-  font-family: 'CustomFont';
-  src: url('/fonts/gt-super-400-normal.woff') format('woff');
+  font-family: "CustomFont";
+  src: url("/fonts/gt-super-400-normal.woff") format("woff");
   font-weight: normal;
   font-style: normal;
 }
 
 /* Apply the custom font globally or to specific elements */
 body {
-  font-family: 'CustomFont', sans-serif;
+  font-family: "CustomFont", sans-serif;
 }

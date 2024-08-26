@@ -4,7 +4,7 @@ const WriteModal = ({ isVisible, onClose }) => {
     if (!isVisible) return null;
 
     return (
-        <div className='fixed inset-0 bg-opacity-50 flex justify-center min-h-screen'>
+        <div className='fixed inset-0 bg-black bg-opacity-50 flex justify-center'>
             <div className='bg-white p-6 rounded-lg flex items-center flex-col w-[50vw] min-h-screen relative'>
                 <div className="closeForm absolute top-3 right-3">
                     <svg onClick={() => onClose()} width="29" height="29" className="cursor-pointer ie fq if hm"><path fillRule="evenodd" d="m20.13 8.11-5.61 5.61-5.609-5.61-.801.801 5.61 5.61-5.61 5.61.801.8 5.61-5.609 5.61 5.61.8-.801-5.609-5.61 5.61-5.61"></path></svg>
