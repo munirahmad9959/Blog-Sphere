@@ -2,14 +2,12 @@
 
 import React, { useState } from 'react'
 import Link from 'next/link'
-// import WriteModal from '@/modals/WriteModal';
-// import SignInModal from '@/modals/SignInModal';
 
 const SignInModal = ({ isVisible, onClose, handleSignInWithEmail }) => {
   if (!isVisible) return null;
 
   return (
-    <div className='fixed inset-0 bg-black bg-opacity-50 flex justify-center'>
+    <div className='fixed inset-0 bg-black bg-opacity-50 flex justify-center z-20'>
       <div className='bg-white p-6 rounded-lg flex items-center flex-col w-[50vw] relative max-h-[100vh] overflow-auto scrollBar'>
         <div className="closeForm absolute top-3 right-3">
           <svg onClick={() => onClose()} width="29" height="29" className="cursor-pointer ie fq if hm"><path fillRule="evenodd" d="m20.13 8.11-5.61 5.61-5.609-5.61-.801.801 5.61 5.61-5.61 5.61.801.8 5.61-5.609 5.61 5.61.8-.801-5.609-5.61 5.61-5.61"></path></svg>
@@ -88,7 +86,7 @@ const WriteModal = ({ isVisible, onClose, handleSignInClick, handleSignUpWithEma
   if (!isVisible) return null;
 
   return (
-    <div className='fixed inset-0 bg-black bg-opacity-50 flex justify-center'>
+    <div className='fixed inset-0 bg-black bg-opacity-50 flex justify-center z-20'>
       <div className='bg-white p-6 rounded-lg flex items-center flex-col w-[50vw] min-h-screen relative'>
         <div className="closeForm absolute top-3 right-3">
           <svg onClick={() => onClose()} width="29" height="29" className="cursor-pointer ie fq if hm"><path fillRule="evenodd" d="m20.13 8.11-5.61 5.61-5.609-5.61-.801.801 5.61 5.61-5.61 5.61.801.8 5.61-5.609 5.61 5.61.8-.801-5.609-5.61 5.61-5.61"></path></svg>
@@ -152,7 +150,7 @@ const SignInWithEmail = ({ isVisible, onClose, handleSignInClick }) => {
   if (!isVisible) return null;
 
   return (
-    <div className='fixed inset-0 bg-black bg-opacity-50 flex justify-center'>
+    <div className='fixed inset-0 bg-black bg-opacity-50 flex justify-center z-20'>
       <div className='bg-white p-6 rounded-lg flex items-center flex-col w-[50vw] min-h-screen relative'>
         <div className="closeForm absolute top-3 right-3">
           <svg onClick={() => onClose()} width="29" height="29" className="cursor-pointer ie fq if hm"><path fillRule="evenodd" d="m20.13 8.11-5.61 5.61-5.609-5.61-.801.801 5.61 5.61-5.61 5.61.801.8 5.61-5.609 5.61 5.61.8-.801-5.609-5.61 5.61-5.61"></path></svg>
@@ -180,7 +178,7 @@ const SignInWithEmail = ({ isVisible, onClose, handleSignInClick }) => {
 const SignUpWithEmail = ({ isVisible, onClose, handleWriteClick }) => {
   if (!isVisible) return null
   return (
-    <div className='fixed inset-0 bg-black bg-opacity-50 flex justify-center'>
+    <div className='fixed inset-0 bg-black bg-opacity-50 flex justify-center z-20'>
       <div className='bg-white p-6 rounded-lg flex items-center flex-col w-[50vw] min-h-screen relative'>
         <div className="closeForm absolute top-3 right-3">
           <svg onClick={() => onClose()} width="29" height="29" className="cursor-pointer ie fq if hm"><path fillRule="evenodd" d="m20.13 8.11-5.61 5.61-5.609-5.61-.801.801 5.61 5.61-5.61 5.61.801.8 5.61-5.609 5.61 5.61.8-.801-5.609-5.61 5.61-5.61"></path></svg>
@@ -255,16 +253,16 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className='flex justify-between items-center w-[100vw] h-[75px] px-16 border-b-[1px] border-black ' style={{ fontFamily: 'CustomFont, sans-serif' }}>
+      <nav className='flex justify-between items-center w-[100vw] h-[75px] px-16 border-b-[1px] border-black z-10 relative bg-[#F7F4ED] ' style={{ fontFamily: 'CustomFont, sans-serif' }}>
         <Link href={"/"}>
           <span className='font-semibold font-serif text-3xl'>BlogSphere</span>
         </Link>
-        <ul className='flex gap-5 items-center'>
+        <ul className='flex gap-5 items-center font-normal text-base font-sans'>
           <li><Link href={"/about"}>Our Story</Link></li>
           <li><Link href={"/membership"}>Membership</Link></li>
           <li onClick={handleWriteClick} className='cursor-pointer'>Write</li>
           <li className='cursor-pointer' onClick={handleSignInClick}>Sign in</li>
-          <li><button className='px-3 rounded-full py-2 bg-black text-white'>Get Started</button></li>
+          <li><button className='px-3 rounded-full py-2 bg-black text-white' onClick={handleWriteClick}>Get Started</button></li>
         </ul>
       </nav>
 
