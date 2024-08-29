@@ -12,7 +12,7 @@ const Banner = () => {
             <p>A place to read, write, and deepen your understanding</p>
           </div>
           <div className="btn">
-            <button className='px-12 rounded-full py-3 bg-black text-white mt-14'>Start Reading</button>
+            <button className='px-12 rounded-full py-3 bg-gray-900 hover:bg-gray-950   text-white mt-14'>Start Reading</button>
           </div>
         </div>
         <div className="rightContainer">

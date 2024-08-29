@@ -262,7 +262,7 @@ const Navbar = () => {
           <li><Link href={"/membership"}>Membership</Link></li>
           <li onClick={handleWriteClick} className='cursor-pointer'>Write</li>
           <li className='cursor-pointer' onClick={handleSignInClick}>Sign in</li>
-          <li><button className='px-3 rounded-full py-2 bg-black text-white' onClick={handleWriteClick}>Get Started</button></li>
+          <li><button className='px-5 rounded-full py-2 bg-gray-800 hover:bg-gray-950 text-white' onClick={handleWriteClick}>Get Started</button></li>
         </ul>
       </nav>
 
