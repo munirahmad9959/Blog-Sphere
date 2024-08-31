@@ -277,15 +277,18 @@ const page = () => {
         </nav>
       </div>
 
-      <BannerMembership />
-
+      <div className="main">
+        <div className="Bannercontainer w-full h-[65%]">
+          <BannerMembership />
+        </div>
+      </div>
 
       <div className='footer relative z-10 bg-[#F7F4ED] h-[75px] border-t border-black flex justify-between items-center text-black px-7'>
         <h2 className='font-semibold text-3xl font-serif'><Link href={"/"}>Blog Sphere</Link></h2>
         <ul className='text-gray-600 font-sans text-xs flex gap-3 justify-center items-center h-full cursor-pointer underline'>
           <li>About</li>
-          <li>Terms</li>
           <li>Privacy</li>
+          <li>Terms</li>
           <li>Help</li>
           <li>Teams</li>
           <li>Press</li>
