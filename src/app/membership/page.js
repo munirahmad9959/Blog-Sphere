@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
-import BannerMembership from '@/components/BannerMembership';
+import BannerSlideshow from '@/components/BannerSlideshow';
 
 const SignInModal = ({ isVisible, onClose, handleSignInWithEmail, handleWriteClick }) => {
   useEffect(() => {
@@ -224,10 +224,47 @@ const SignUpWithEmail = ({ isVisible, onClose, handleWriteClick }) => {
 
 const page = () => {
 
+  const slides = [
+    {
+      image: 'https://media.istockphoto.com/id/2149585773/photo/a-happy-beautiful-businessman-looking-away-while-working-in-the-office.webp?a=1&b=1&s=612x612&w=0&k=20&c=3c6T7LoeMr8isIEXzTHnly_Vm_3cI4PUY1B9q0DRP_s=',
+      title: "Can Entrepreneurship Classes Unlock the Secrets to Building the Next Big Startup?",
+      author: "Dr. Emily Carter",
+      jobTitle: "Serial Entrepreneur and Startup Mentor",
+      color: 'bg-[#2d89b4] bg-opacity-50',
+    },
+    {
+      image: 'https://plus.unsplash.com/premium_photo-1665329006985-04f95dd59402?q=80&w=1471&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+      title: "Why Blogging Still Matters in 2024",
+      author: "Lisa Morgan",
+      jobTitle: "Content Strategist and Digital Marketer",
+      color: "bg-[#DEB887]",
+    },
+    {
+      image: 'https://plus.unsplash.com/premium_photo-1663090894347-35d4ecc2c622?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fG1lbnRhbCUyMHdlbGwlMjBiZWluZ3xlbnwwfHwwfHx8MA%3D%3D',
+      title: "The Hidden Impact of Social Media on Mental Health",
+      author: "Dr. Sarah Thompson",
+      jobTitle: "Clinical Psychologist and Researcher",
+      color: "bg-[#FFCC99]",
+    },
+  ];
+
+
   const [isWriteModalVisible, setWriteModalVisible] = useState(false);
   const [isSignInModalVisible, setSignInModalVisible] = useState(false);
   const [isSignInWithEmail, setSignInWithEmail] = useState(false)
   const [isSignUpWithEmail, setSignUpWithEmail] = useState(false)
+  const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setCurrentSlideIndex((prevIndex) => (prevIndex + 1) % slides.length);
+    }, 3000);
+
+    return () => clearInterval(intervalId);
+  }, [slides.length, currentSlideIndex]);
+
+  const currentSlide = slides[currentSlideIndex];
+
 
   const handleWriteClick = () => {
     setWriteModalVisible(true);
@@ -267,7 +304,7 @@ const page = () => {
 
   return (
     <>
-      <div className='header border-b border-black'>
+      <div className='header border-b border-black sticky top-0 z-50 bg-white'>
         <nav className='flex justify-between h-[80px] border-b items-center px-7'>
           <h1 className='text-3xl'><Link href={"/"}>Blog Sphere</Link></h1>
           <ul className='flex gap-5'>
@@ -277,9 +314,260 @@ const page = () => {
         </nav>
       </div>
 
-      <div className="main">
-        <div className="Bannercontainer w-full h-[65%]">
-          <BannerMembership />
+      <div className="Bannercontainer w-full h-[65%] border-b border-black">
+        <div className="container max-w-full flex">
+          <div className={`leftContainer flex-initial w-[65%] h-[65%] border-black border-r ${currentSlide.color}`}>
+            <div className="container mt-12 ml-7 px-5">
+              <h1 className='font-semibold text-[70px] font-[apple] text-[#242424] leading-[74px] tracking-tighter'>
+                Support human
+              </h1>
+              <h1 className='font-semibold text-[70px] font-[apple] text-[#242424] leading-[74px] tracking-tighter'>
+                stories
+              </h1>
+
+              <div className="text mt-60 w-5/6">
+                <p className='text-gray-500 font-serif text-[27px] leading-[30px] font-normal tracking-tighter'>
+                  Become a member to read without limits or ads, fund great writers, and join a global community of people who care about high-quality storytelling.
+                </p>
+              </div>
+              <div className="btn flex gap-3 py-5">
+                <button
+                  className='px-12 rounded-full py-3 bg-gray-900 hover:bg-gray-950 text-white mt-14 shadow-md hover:shadow-2xl transform hover:scale-105 transition-all duration-300 ease-in-out'
+                >
+                  Get Started
+                </button>
+
+                <button
+                  className={`px-12 rounded-full py-3 ${currentSlide.color} text-white mt-14 shadow-md hover:shadow-2xl transform hover:scale-105 transition-all duration-300 ease-in-out`}
+                >
+                  View plans
+                </button>
+              </div>
+            </div>
+          </div>
+          <div className="rightContainer w-[35%] max-h-[65%]">
+            <BannerSlideshow slides={slides} interval={3000} />
+          </div>
+        </div>
+      </div>
+
+      <div className="whymembership flex mb-32 border-b border-black gap-20 max-w-full h-[auto] mt-3">
+        <div className="left my-16 ml-7">
+          <h1 className='sticky top-36 tracking-tighter leading-[74px] text-[70px]'>Why membership?</h1>
+        </div>
+        <div className="right my-16 flex flex-col gap-[120px] mr-28">
+          <div>
+            <h1 className='tracking-[-0.004em] leading-[52px] text-[48px]'>Reward writers</h1>
+            <p className='text-[20px] leading-7 text-[#242424] mt-5'>Your membership directly supports the writers, editors, curators, and teams who make Medium a vibrant, inclusive home for human stories. A portion of your membership is allocated to the writers of the stories you read and interact with.</p>
+          </div>
+          <div>
+            <h1 className='tracking-[-0.004em] leading-[52px] text-[48px]'>Unlock every story</h1>
+            <p className='text-[20px] leading-7 text-[#242424] mt-5'>Get access to millions of original stories that spark bright ideas, answer big questions, and fuel bold ambitions.</p>
+          </div>
+          <div>
+            <h1 className='tracking-[-0.004em] leading-[52px] text-[48px]'>Enhance your reading experience</h1>
+            <p className='text-[20px] leading-7 text-[#242424] mt-5'>Immerse yourself in audio stories, read offline wherever you go, and connect with the Medium community on Mastodon.</p>
+          </div>
+          <div>
+            <h1 className='tracking-[-0.004em] leading-[52px] text-[48px]'>Elevate your writing</h1>
+            <p className='text-[20px] leading-7 text-[#242424] mt-5'>Create and contribute to publications to collaborate with other writers, create a custom domain for your profile, and level up your writing with our simple but powerful publishing tools.</p>
+          </div>
+          <div>
+            <h1 className='tracking-[-0.004em] leading-[52px] text-[48px]'>Support a mission that matters</h1>
+            <p className='text-[20px] leading-7 text-[#242424] mt-5'>Members are creating a world where original, human-crafted stories thrive. As a member-supported platform, quality comes first, not ads or clickbait.</p>
+          </div>
+        </div>
+      </div>
+
+      <div className="whatmembersaresaying flex mb-32 border-b border-black gap-20 max-w-full h-[auto] mt-3">
+        <div className="left my-16 ml-7">
+          <h1 className='sticky top-36 tracking-tighter leading-[74px] text-[70px]'>What&nbsp;members are saying?</h1>
+        </div>
+        <div className="right my-16 flex flex-col gap-[120px] mr-28">
+          <div className='flex gap-8'>
+            <div className="image"><img src="https://miro.medium.com/v2/resize:fill:160:160/1*djKJlXxmezn6fBPzHnipnw.jpeg" alt="" width={220} height={220} className='rounded-full' /></div>
+            <div className="sayings">
+              <p className='text-[20px] tracking-[-0.003em] leading-8 text-[#242424]'>The easy path in social media is promoting the worst content, the cheapest, tackiest, lowest-effort stuff. That’s not what you get on Medium. You can actually find content you can build your brain with. I appreciate that, both as a reader and a writer.</p>
+              <p className='title text-[16px] leading-6 mt-[1rem]'><span className="font-bold">Cassie Kozyrkov,</span> Chief Decision Scientist at Google and Medium member</p>
+            </div>
+          </div>
+
+          <div className='flex gap-8'>
+            <div className="image"><img src="https://miro.medium.com/v2/resize:fill:160:160/1*ZYP58jl-6KcKocr1P7r5Hw.jpeg" alt="" width={220} height={220} className='rounded-full' /></div>
+            <div className="sayings">
+              <p className='text-[20px] tracking-[-0.003em] leading-8 text-[#242424]'>Medium has proved a game-changer for me, and quickly became the subscription I value the most, and I have quite a few. The cost is nothing compared to the value Medium generates for me month after month.</p>
+              <p className='title text-[16px] leading-6 mt-[1rem]'><span className="font-bold">Enrique Dans,</span> Professor of Innovation at IE Business School and Medium member</p>
+            </div>
+          </div>
+          <div className='flex gap-8'>
+            <div className="image"><img src="https://miro.medium.com/v2/resize:fill:160:160/1*Ce4jOl6gjeebSiHsknN2-A.jpeg" alt="" width={450} height={450} className='rounded-full' /></div>
+            <div className="sayings">
+              <p className='text-[20px] tracking-[-0.003em] leading-8 text-[#242424]'>For us tech folks, Medium membership unlocks a whole treasure trove of high-quality articles. One good technology book could sell for over the Medium membership fee amount. It’s your choice whether to buy one book, or buy hundreds and thousands of books by unlocking member-only reading on Medium. Investing in a Medium membership is one of the best investments I have ever made for my career.</p>
+              <p className='title text-[16px] leading-6 mt-[1rem]'><span className="font-bold">Wenqui Glantz,</span> Software Architect at ArisGlobal and Medium member</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="membershipplans flex mb-10 border-b border-black gap-20 max-w-full h-[auto] mt-3">
+        <div className="my-16 ml-7">
+          <h1 className='sticky top-36 tracking-tighter leading-[74px] text-[70px]'>Membership plans</h1>
+        </div>
+        <div className="my-16 flex gap-10 mr-28 w-full">
+          <div className="medium-member border border-gray-300 flex flex-col items-center w-1/2">
+            <div className="svg mt-7">
+              <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="none" viewBox="0 0 64 64" role="presentation" aria-hidden="true" focusable="false" class="ki kj"><path fill="#FFC017" d="m39.637 40.831-5.771 15.871a1.99 1.99 0 0 1-3.732 0l-5.771-15.87a2.02 2.02 0 0 0-1.194-1.195L7.298 33.866a1.99 1.99 0 0 1 0-3.732l15.87-5.771a2.02 2.02 0 0 0 1.195-1.194l5.771-15.871a1.99 1.99 0 0 1 3.732 0l5.771 15.87a2.02 2.02 0 0 0 1.194 1.195l15.871 5.771a1.99 1.99 0 0 1 0 3.732l-15.87 5.771a2.02 2.02 0 0 0-1.195 1.194"></path></svg>
+            </div>
+            <div className="title">
+              <h2 className='font-bold text-[24px] leading-7 tracking-[-0.016em]'>Medium Member</h2>
+              <p className='font-serif'>$5/month or $60/year</p>
+            </div>
+            <div className="btn">
+              <button className='text-[14px] leading-5 px-24 rounded-full py-2  bg-[#1A8917] hover:bg-[#156D12] text-white mt-5'>
+                Get Started
+              </button>
+            </div>
+
+            <div className="spacer h-[1px] bg-gray-300 w-64 my-7"></div>
+
+            <div className="benefits leading-5 text-[14px] text-[#242424]">
+              <ul className='flex flex-col items-start px-7 mb-7'>
+                <li className='flex gap-2 mt-3'>
+                  <div className="svg">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 16 16" role="presentation" aria-hidden="true" focusable="false"><path stroke="#1A8917" stroke-linecap="round" stroke-linejoin="round" d="M3 8.79 7.103 13 13 3"></path></svg>
+                  </div>
+                  <div className="text">
+                    <p>Read member-only stories</p>
+                  </div>
+                </li>
+                <li className='flex gap-2 mt-3'>
+                  <div className="svg">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 16 16" role="presentation" aria-hidden="true" focusable="false"><path stroke="#1A8917" stroke-linecap="round" stroke-linejoin="round" d="M3 8.79 7.103 13 13 3"></path></svg>
+                  </div>
+                  <div className="text">
+                    <p>Support writers you read most</p>
+                  </div>
+                </li>
+                <li className='flex gap-2 mt-3'>
+                  <div className="svg">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 16 16" role="presentation" aria-hidden="true" focusable="false"><path stroke="#1A8917" stroke-linecap="round" stroke-linejoin="round" d="M3 8.79 7.103 13 13 3"></path></svg>
+                  </div>
+                  <div className="text">
+                    <p>Earn money for your writing</p>
+                  </div>
+                </li>
+                <li className='flex gap-2 mt-3'>
+                  <div className="svg">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 16 16" role="presentation" aria-hidden="true" focusable="false"><path stroke="#1A8917" stroke-linecap="round" stroke-linejoin="round" d="M3 8.79 7.103 13 13 3"></path></svg>
+                  </div>
+                  <div className="text">
+                    <p>Listen to audio narrations</p>
+                  </div>
+                </li>
+                <li className='flex gap-2 mt-3'>
+                  <div className="svg">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 16 16" role="presentation" aria-hidden="true" focusable="false"><path stroke="#1A8917" stroke-linecap="round" stroke-linejoin="round" d="M3 8.79 7.103 13 13 3"></path></svg>
+                  </div>
+                  <div className="text">
+                    <p>Read offline with the Medium app</p>
+                  </div>
+                </li>
+                <li className='flex gap-2 mt-3'>
+                  <div className="svg">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 16 16" role="presentation" aria-hidden="true" focusable="false"><path stroke="#1A8917" stroke-linecap="round" stroke-linejoin="round" d="M3 8.79 7.103 13 13 3"></path></svg>
+                  </div>
+                  <div className="text">
+                    <p>Access our Mastodon community</p>
+                  </div>
+                </li>
+                <li className='flex gap-2 mt-3'>
+                  <div className="svg">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 16 16" role="presentation" aria-hidden="true" focusable="false"><path stroke="#1A8917" stroke-linecap="round" stroke-linejoin="round" d="M3 8.79 7.103 13 13 3"></path></svg>
+                  </div>
+                  <div className="text">
+                    <p>Connect your custom domain</p>
+                  </div>
+                </li>
+                <li className='flex gap-2 mt-3'>
+                  <div className="svg">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 16 16" role="presentation" aria-hidden="true" focusable="false"><path stroke="#1A8917" stroke-linecap="round" stroke-linejoin="round" d="M3 8.79 7.103 13 13 3"></path></svg>
+                  </div>
+                  <div className="text">
+                    <p>Create your own publications</p>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div className="medium-friend border border-gray-300 w-1/2 flex flex-col items-center">
+            <div className="svg mt-7">
+              <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="none" viewBox="0 0 64 64" role="presentation" aria-hidden="true" focusable="false" class="ki kj"><path fill="#FFC017" fill-rule="evenodd" d="M56.475 38.3C58.125 36.575 60 34.6 60 32s-1.875-4.575-3.525-6.3c-.95-.975-1.975-2.05-2.3-2.875-.325-.824-.35-2.17-.375-3.494v-.006c-.025-2.425-.075-5.2-2-7.125s-4.7-1.975-7.125-2l-.431-.007c-1.172-.017-2.29-.034-3.069-.368-.875-.375-1.9-1.35-2.875-2.3C36.575 5.875 34.6 4 32 4s-4.575 1.875-6.3 3.525c-.975.95-2.05 1.975-2.875 2.3-.824.325-2.17.35-3.494.375h-.006c-2.425.025-5.2.075-7.125 2s-1.975 4.7-2 7.125l-.007.431c-.017 1.172-.034 2.29-.368 3.069-.375.875-1.35 1.9-2.3 2.875C5.875 27.425 4 29.4 4 32s1.875 4.575 3.525 6.3c.95.975 1.975 2.05 2.3 2.875.325.824.35 2.17.375 3.494v.006c.025 2.425.075 5.2 2 7.125s4.7 1.975 7.125 2l.431.007c1.172.017 2.29.034 3.069.368.875.375 1.9 1.35 2.875 2.3C27.425 58.125 29.4 60 32 60s4.575-1.875 6.3-3.525c.975-.95 2.05-1.975 2.875-2.3.824-.325 2.17-.35 3.494-.375h.006c2.425-.025 5.2-.075 7.125-2s1.975-4.7 2-7.125l.007-.431c.017-1.172.034-2.29.368-3.069.375-.875 1.35-1.9 2.3-2.875m-23.36 6.846a1.92 1.92 0 0 1-2.226 0h-.003C27.574 42.8 18.006 35.762 18 28.909s6.503-10.252 13.259-4.45c.43.37 1.052.37 1.482 0 6.755-5.805 13.265-2.403 13.259 4.45-.006 6.56-9.574 13.892-12.886 16.237" clip-rule="evenodd"></path></svg>
+            </div>
+            <div className="title">
+              <h2 className='font-bold text-[24px] leading-7 tracking-[-0.016em]'>Friend of Medium</h2>
+              <p className='font-serif'>$15/month or $150/year</p>
+            </div>
+            <div className="btn">
+              <button className='text-[14px] leading-5 px-24 rounded-full py-2  bg-[#1A8917] hover:bg-[#156D12] text-white mt-5'>
+                Get Started
+              </button>
+            </div>
+            <div className="spacer h-[1px] bg-gray-300 w-64 my-7"></div>
+
+            <div className="extras flex gap-2 leading-5 text-[14px] text-[#242424]">
+              <div className="svg">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 64 64" role="presentation" aria-hidden="true" focusable="false" className="la kz"><path fill="#FFC017" d="m39.637 40.831-5.771 15.871a1.99 1.99 0 0 1-3.732 0l-5.771-15.87a2.02 2.02 0 0 0-1.194-1.195L7.298 33.866a1.99 1.99 0 0 1 0-3.732l15.87-5.771a2.02 2.02 0 0 0 1.195-1.194l5.771-15.871a1.99 1.99 0 0 1 3.732 0l5.771 15.87a2.02 2.02 0 0 0 1.194 1.195l15.871 5.771a1.99 1.99 0 0 1 0 3.732l-15.87 5.771a2.02 2.02 0 0 0-1.195 1.194"></path></svg>
+              </div>
+              <div className="text">
+                <p>All Medium member benefits</p>
+              </div>
+            </div>
+
+            <div className="PLUS flex gap-2 items-center">
+              <div className="spacer h-[1px] bg-gray-300 w-24 my-7"></div>
+              <span className='text-[14px] text-gray-400'>PLUS</span>
+              <div className="spacer h-[1px] bg-gray-300 w-24 my-7"></div>
+
+            </div>
+
+            <div className="benefits leading-5 text-[14px] text-[#242424] flex flex-col items-start">
+              <div className="heading flex items-center gap-2 px-7">
+                <div className="svg">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 16 16" role="presentation" aria-hidden="true" focusable="false"><path stroke="#1A8917" stroke-linecap="round" stroke-linejoin="round" d="M3 8.79 7.103 13 13 3"></path></svg>
+                </div>
+                <h2 className='font-bold text-[18px]'>
+                  Give 4x more to the writers you read
+                </h2>
+              </div>
+              <ul className='flex flex-col items-start mb-7 px-7 text-[14px]'>
+                <li className='flex gap-2 mt-3'>
+                  <div className="svg">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 16 16" role="presentation" aria-hidden="true" focusable="false"><path stroke="#1A8917" stroke-linecap="round" stroke-linejoin="round" d="M3 8.79 7.103 13 13 3"></path></svg>
+                  </div>
+                  <div className="text">
+                    <p>Share member-only stories with anyone and drive more earnings for writers</p>
+                  </div>
+                </li>
+                <li className='flex gap-2 mt-3'>
+                  <div className="svg">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 16 16" role="presentation" aria-hidden="true" focusable="false"><path stroke="#1A8917" stroke-linecap="round" stroke-linejoin="round" d="M3 8.79 7.103 13 13 3"></path></svg>
+                  </div>
+                  <div className="text">
+                    <p>Customize app icon</p>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="b-footer flex flex-col items-center py-[80px] px-[32px] bg-gradient-animation">
+        <p className='tracking-tighter leading-[74px] text-[70px]'>Unlock a world of wisdom</p>
+        <div className="btn">
+          <button className='px-12 rounded-full py-3 bg-gray-900 hover:bg-gray-950 text-white mt-14'>
+            Get Started
+          </button>
         </div>
       </div>
 

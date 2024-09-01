@@ -5,7 +5,6 @@
 /* playfair styles.css 
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap'); */
 
-
 @layer components {
   .scrollBar {
     scrollbar-width: none; /* Firefox */
@@ -14,6 +13,36 @@
 
   .scrollBar::-webkit-scrollbar {
     display: none; /* Chrome, Safari, Opera */
+  }
+}
+
+@layer components {
+  @keyframes gradient-animation {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+  .bg-gradient-animation {
+    background: linear-gradient(
+      270deg,
+      #ff7e5f,
+      /* soft orange */ #feb47b,
+      /* peach */ #ff6f69,
+      /* coral */ #ffcc66,
+      /* light yellow */ #66ffcc,
+      /* aqua */ #66ccff,
+      /* sky blue */ #9966ff,
+      /* purple */ #ff6699 /* pink */
+    );
+    background-size: 1200% 1200%;
+    animation: gradient-animation 13s ease infinite;
   }
 }
 
@@ -27,5 +56,5 @@
 /* Apply the custom font globally or to specific elements */
 body {
   font-family: "CustomFont", sans-serif;
-  background-color: #F7F4ED;
+  background-color: #f7f4ed;
 }

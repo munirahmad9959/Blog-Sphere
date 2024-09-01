@@ -11,7 +11,8 @@ export default function AboutLayout({ children }) {
         <div style={{
             minHeight: '100vh',
             fontFamily: "CustomFont",
-            maxWidth: "100vw"
+            maxWidth: "100vw",
+            backgroundColor: "white",
         }}>
             {children}
         </div>
