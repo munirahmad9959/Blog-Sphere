@@ -74,7 +74,7 @@ const SignInModal = ({ isVisible, onClose, handleSignInWithEmail }) => {
         <div className='forgot-email text-gray-600 text-sm mt-16'><p>Forgot email or trouble signing in? <span className='underline cursor-pointer'>Get help</span>.</p></div>
 
         <div className="termsConditions text-gray-600 mt-[4.2rem] text-center  mx-auto text-xs">
-          <p className='px-16'>Click “Sign in” to agree to BlogSphere's <span className='underline cursor-pointer'>Terms of Service</span> and acknowledge that BlogSphere's <span className='underline cursor-pointer'>Privacy Policy</span> applies to you.</p>
+          <p className='px-16'>Click “Sign in” to agree to BlogSphere&apos;s <span className='underline cursor-pointer'>Terms of Service</span> and acknowledge that BlogSphere&apos;s <span className='underline cursor-pointer'>Privacy Policy</span> applies to you.</p>
         </div>
       </div>
     </div>
@@ -139,7 +139,7 @@ const WriteModal = ({ isVisible, onClose, handleSignInClick, handleSignUpWithEma
           </span>
         </div>
         <div className="termsConditions text-gray-600 mt-20 text-center  mx-auto text-xs">
-          <p className='px-16'>Click “Sign up” to agree to BlogSphere's <span className='underline cursor-pointer'>Terms of Service</span> and acknowledge that BlogSphere's <span className='underline cursor-pointer'>Privacy Policy</span> applies to you.</p>
+          <p className='px-16'>Click “Sign up” to agree to BlogSphere&apos;s <span className='underline cursor-pointer'>Terms of Service</span> and acknowledge that BlogSphere&apos;s <span className='underline cursor-pointer'>Privacy Policy</span> applies to you.</p>
         </div>
       </div>
     </div>

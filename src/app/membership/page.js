@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
 import BannerSlideshow from '@/components/BannerSlideshow';
+import Image from 'next/image';
 
 const SignInModal = ({ isVisible, onClose, handleSignInWithEmail, handleWriteClick }) => {
   useEffect(() => {
@@ -88,7 +89,7 @@ const SignInModal = ({ isVisible, onClose, handleSignInWithEmail, handleWriteCli
         <div className='forgot-email text-gray-600 text-sm mt-16'><p>Forgot email or trouble signing in? <span className='underline cursor-pointer'>Get help</span>.</p></div>
 
         <div className="termsConditions text-gray-600 mt-[4.2rem] text-center  mx-auto text-xs">
-          <p className='px-16'>Click “Sign in” to agree to BlogSphere's <span className='underline cursor-pointer'>Terms of Service</span> and acknowledge that BlogSphere's <span className='underline cursor-pointer'>Privacy Policy</span> applies to you.</p>
+          <p className='px-16'>Click “Sign in” to agree to BlogSphere&apos;s <span className='underline cursor-pointer'>Terms of Service</span> and acknowledge that BlogSphere&apos;s <span className='underline cursor-pointer'>Privacy Policy</span> applies to you.</p>
         </div>
       </div>
     </div>
@@ -153,7 +154,7 @@ const WriteModal = ({ isVisible, onClose, handleSignInClick, handleSignUpWithEma
           </span>
         </div>
         <div className="termsConditions text-gray-600 mt-20 text-center  mx-auto text-xs">
-          <p className='px-16'>Click “Sign up” to agree to BlogSphere's <span className='underline cursor-pointer'>Terms of Service</span> and acknowledge that BlogSphere's <span className='underline cursor-pointer'>Privacy Policy</span> applies to you.</p>
+          <p className='px-16'>Click “Sign up” to agree to BlogSphere&apos;s <span className='underline cursor-pointer'>Terms of Service</span> and acknowledge that BlogSphere&apos;s <span className='underline cursor-pointer'>Privacy Policy</span> applies to you.</p>
         </div>
       </div>
     </div>
@@ -222,7 +223,7 @@ const SignUpWithEmail = ({ isVisible, onClose, handleWriteClick }) => {
 
 }
 
-const page = () => {
+const Page = () => {
 
   const slides = [
     {
@@ -385,7 +386,7 @@ const page = () => {
         </div>
         <div className="right my-16 flex flex-col gap-[120px] mr-28">
           <div className='flex gap-8'>
-            <div className="image"><img src="https://miro.medium.com/v2/resize:fill:160:160/1*djKJlXxmezn6fBPzHnipnw.jpeg" alt="" width={220} height={220} className='rounded-full' /></div>
+            <div className="image"><Image src="https://miro.medium.com/v2/resize:fill:160:160/1*djKJlXxmezn6fBPzHnipnw.jpeg" alt="" width={220} height={220} className='rounded-full' /></div>
             <div className="sayings">
               <p className='text-[20px] tracking-[-0.003em] leading-8 text-[#242424]'>The easy path in social media is promoting the worst content, the cheapest, tackiest, lowest-effort stuff. That’s not what you get on Medium. You can actually find content you can build your brain with. I appreciate that, both as a reader and a writer.</p>
               <p className='title text-[16px] leading-6 mt-[1rem]'><span className="font-bold">Cassie Kozyrkov,</span> Chief Decision Scientist at Google and Medium member</p>
@@ -393,14 +394,14 @@ const page = () => {
           </div>
 
           <div className='flex gap-8'>
-            <div className="image"><img src="https://miro.medium.com/v2/resize:fill:160:160/1*ZYP58jl-6KcKocr1P7r5Hw.jpeg" alt="" width={220} height={220} className='rounded-full' /></div>
+            <div className="image"><Image src="https://miro.medium.com/v2/resize:fill:160:160/1*ZYP58jl-6KcKocr1P7r5Hw.jpeg" alt="" width={220} height={220} className='rounded-full' /></div>
             <div className="sayings">
               <p className='text-[20px] tracking-[-0.003em] leading-8 text-[#242424]'>Medium has proved a game-changer for me, and quickly became the subscription I value the most, and I have quite a few. The cost is nothing compared to the value Medium generates for me month after month.</p>
               <p className='title text-[16px] leading-6 mt-[1rem]'><span className="font-bold">Enrique Dans,</span> Professor of Innovation at IE Business School and Medium member</p>
             </div>
           </div>
           <div className='flex gap-8'>
-            <div className="image"><img src="https://miro.medium.com/v2/resize:fill:160:160/1*Ce4jOl6gjeebSiHsknN2-A.jpeg" alt="" width={450} height={450} className='rounded-full' /></div>
+            <div className="image"><Image src="https://miro.medium.com/v2/resize:fill:160:160/1*Ce4jOl6gjeebSiHsknN2-A.jpeg" alt="" width={450} height={450} className='rounded-full' /></div>
             <div className="sayings">
               <p className='text-[20px] tracking-[-0.003em] leading-8 text-[#242424]'>For us tech folks, Medium membership unlocks a whole treasure trove of high-quality articles. One good technology book could sell for over the Medium membership fee amount. It’s your choice whether to buy one book, or buy hundreds and thousands of books by unlocking member-only reading on Medium. Investing in a Medium membership is one of the best investments I have ever made for my career.</p>
               <p className='title text-[16px] leading-6 mt-[1rem]'><span className="font-bold">Wenqui Glantz,</span> Software Architect at ArisGlobal and Medium member</p>
@@ -593,4 +594,4 @@ const page = () => {
   )
 }
 
-export default page
+export default Page

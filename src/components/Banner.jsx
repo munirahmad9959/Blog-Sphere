@@ -1,5 +1,6 @@
 "use client"
 
+import Image from 'next/image'
 import React from 'react'
 
 const Banner = () => {
@@ -16,7 +17,7 @@ const Banner = () => {
           </div>
         </div>
         <div className="rightContainer">
-          <img src="/medium-banner-img.webp" width={460} height={600} alt="" className="object-cover -mt-12" />
+          <Image src="/medium-banner-img.webp" width={460} height={600} alt="" className="object-cover -mt-12" />
         </div>
       </div >
     </>
