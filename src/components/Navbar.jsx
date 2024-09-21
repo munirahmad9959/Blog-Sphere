@@ -1,7 +1,11 @@
 "use client"
 
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
+import {
+  createUserWithEmailAndPassword, sendEmailVerification, onAuthStateChanged
+} from 'firebase/auth';
+import { auth } from '../../lib/firebase';
 
 const SignInModal = ({ isVisible, onClose, handleSignInWithEmail }) => {
   if (!isVisible) return null;
@@ -161,8 +165,8 @@ const SignInWithEmail = ({ isVisible, onClose, handleSignInClick }) => {
         </div>
         <form className="signIn mt-14 w-[42%]">
           <div>
-            <label for="small-input" className="block mb-2 text-sm font-medium text-black text-center">Your email</label>
-            <input type="email" id="small-input" className="block w-full p-2 text-gray-900 border border-gray-50  bg-gray-50 text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-200  dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
+            <label htmlFor="small-input" className="block mb-2 text-sm font-medium text-black text-center">Your email</label>
+            <input type="email" id="small-input" className="block w-full p-2 text-gray-900 border border-gray-50  bg-gray-50 text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-200  dark:placeholder-gray-600 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500" />
           </div>
           <div className="button flex items-center justify-center mt-11"><button className='px-16 rounded-full py-2 bg-slate-950 text-white text-base'>Continue</button></div>
         </form>
@@ -176,6 +180,7 @@ const SignInWithEmail = ({ isVisible, onClose, handleSignInClick }) => {
 }
 
 const SignUpWithEmail = ({ isVisible, onClose, handleWriteClick }) => {
+
   if (!isVisible) return null
   return (
     <div className='fixed inset-0 bg-black bg-opacity-50 flex justify-center z-20'>
@@ -189,10 +194,10 @@ const SignUpWithEmail = ({ isVisible, onClose, handleWriteClick }) => {
         </div>
         <form className="signIn mt-9 w-[42%]">
           <div>
-            <label for="small-input" className="block mb-2 text-sm font-medium text-black text-center">Your email</label>
-            <input type="email" id="small-input" className="block w-full p-2 text-gray-900 border border-gray-50  bg-gray-50 text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-200  dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
+            <label htmlFor="small-input" className="block mb-2 text-sm font-medium text-black text-center">Your email</label>
+            <input id="small-input" className="block w-full p-2 text-gray-900 border border-gray-50  bg-gray-50 text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-200  dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500" />
           </div>
-          <div className="button flex items-center justify-center mt-11"><button className='px-16 rounded-full py-2 bg-slate-950 text-white text-base'>Continue</button></div>
+          <div className="button flex items-center justify-center mt-11"><button className='px-16 rounded-full py-2 bg-slate-950 text-white text-base' type='submit'>Continue</button></div>
         </form>
         <div className="allSignInOptions mt-9 text-emerald-700 flex items-center cursor-pointer">
           <svg width="19" height="19" className=" text-emerald-700 cl io ip" viewBox="0 0 19 19"><path fill='currentColor' fillRule="evenodd" d="M11.47 13.969 6.986 9.484 11.47 5l.553.492L8.03 9.484l3.993 3.993z"></path></svg>
