@@ -69,7 +69,7 @@ const RegisterationForm = ({ handleSignInClick, handleWriteClick }) => {
             <form className="grid grid-cols-1 md:grid-cols-2 gap-6" onSubmit={handleRegister}>
                 <div>
                     <label className="block text-sm font-medium text-gray-700">Full Name</label>
-                    <input
+                    <input required
                         type="text"
                         name="fullName"
                         placeholder="Enter Your Name"
@@ -80,7 +80,7 @@ const RegisterationForm = ({ handleSignInClick, handleWriteClick }) => {
                 </div>
                 <div>
                     <label className="block text-sm font-medium text-gray-700">Username</label>
-                    <input
+                    <input required
                         type="text"
                         name="username"
                         placeholder="Enter Your Username"
@@ -91,7 +91,7 @@ const RegisterationForm = ({ handleSignInClick, handleWriteClick }) => {
                 </div>
                 <div>
                     <label className="block text-sm font-medium text-gray-700">Email</label>
-                    <input
+                    <input required
                         type="email"
                         name="email"
                         placeholder="Enter Your E-mail"
@@ -102,7 +102,7 @@ const RegisterationForm = ({ handleSignInClick, handleWriteClick }) => {
                 </div>
                 <div>
                     <label className="block text-sm font-medium text-gray-700">Phone Number</label>
-                    <input
+                    <input required
                         type="tel"
                         name="phoneNumber"
                         placeholder="Enter Your Phone Number"
@@ -113,7 +113,7 @@ const RegisterationForm = ({ handleSignInClick, handleWriteClick }) => {
                 </div>
                 <div>
                     <label className="block text-sm font-medium text-gray-700">Password</label>
-                    <input
+                    <input required
                         type="password"
                         name="password"
                         placeholder="Enter Your Password"
@@ -124,7 +124,7 @@ const RegisterationForm = ({ handleSignInClick, handleWriteClick }) => {
                 </div>
                 <div>
                     <label className="block text-sm font-medium text-gray-700">Confirm Password</label>
-                    <input
+                    <input required
                         type="password"
                         name="confirmPassword"
                         placeholder="Enter Your Password"

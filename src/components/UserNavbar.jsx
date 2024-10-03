@@ -43,13 +43,19 @@ const UserNavbar = ({ email }) => {
   };
 
   const handleLogout = async () => {
-    dispatch(logoutUser());
-    dispatch(setLoading(true));
+    dispatch(setLoading(true)); // Start loading
 
-    setTimeout(() => {
-      dispatch(setLoading(false));
-    }, 1000);
-    router.push('/');
+    try {
+      await dispatch(logoutUser()); // Dispatch logoutUser and wait for it
+
+      setTimeout(() => {
+        router.push('/'); // Navigate to home after logout
+        dispatch(setLoading(false)); // Stop loading after navigation
+      }, 1000);
+    } catch (err) {
+      console.error('Logout failed:', err);
+      dispatch(setLoading(false)); // Stop loading in case of an error
+    }
   };
 
   if (loading) {
@@ -58,15 +64,6 @@ const UserNavbar = ({ email }) => {
         <span className='font-semibold font-serif text-3xl'>BlogSphere</span>
         <PlayLoading />
       </div>
-      // <div className="h-screen flex items-center justify-center">
-      //   <Image
-      //     src="/spinner.gif"
-      //     alt="Loading..."
-      //     width={100}
-      //     height={100}
-      //     unoptimized={true}
-      //   />
-      // </div>
     );
   }
 
