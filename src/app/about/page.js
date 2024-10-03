@@ -274,7 +274,7 @@ const Page = () => {
         <>
             <div className='header '>
                 <nav className='flex justify-between h-[80px] border-b items-center px-7'>
-                    <h1 className='text-3xl'><Link href={"/"}>Blog Sphere</Link></h1>
+                    <h1 className='text-3xl font-semibold'><Link href={"/"}>BlogSphere</Link></h1>
                     <ul className='flex gap-5'>
                         <li><button className='px-5 py-2 border border-white rounded-full font-sans text-sm' onClick={handleSignInClick}>Sign in</button></li>
                         <li><button className='px-5 py-2 border border-black rounded-full font-sans text-sm bg-white text-black' onClick={handleWriteClick}>Sign up</button></li>
@@ -322,7 +322,7 @@ const Page = () => {
             </div>
 
             <div className='footer relative z-10 bg-[#F7F4ED] h-[75px] border-t border-black flex justify-between items-center text-black px-7'>
-                <h2 className='font-semibold text-3xl font-serif'><Link href={"/"}>Blog Sphere</Link></h2>
+                <h2 className='font-semibold text-3xl font-serif'><Link href={"/"}>BlogSphere</Link></h2>
                 <ul className='text-gray-600 font-sans text-xs flex gap-3 justify-center items-center h-full cursor-pointer underline'>
                     <li>About</li>
                     <li>Terms</li>

@@ -1,8 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { auth } from '../lib/firebase'; // Import the already initialized auth
+import { auth } from '../lib/firebase';
 import { signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut } from 'firebase/auth';
 
-// Initial state focused on authentication only
 const initialState = {
     user: null,
     token: null,
@@ -10,7 +9,6 @@ const initialState = {
     error: null,
 };
 
-// Thunk for signing up with Firebase
 export const signupUser = createAsyncThunk(
     'auth/signupUser',
     async ({ email, password }, { rejectWithValue }) => {
@@ -24,7 +22,6 @@ export const signupUser = createAsyncThunk(
     }
 );
 
-// Thunk for logging in with Firebase
 export const loginUser = createAsyncThunk(
     'auth/loginUser',
     async ({ email, password }, { rejectWithValue }) => {
@@ -38,7 +35,6 @@ export const loginUser = createAsyncThunk(
     }
 );
 
-// Thunk for logging out
 export const logoutUser = createAsyncThunk(
     'auth/logoutUser',
     async (_, { rejectWithValue }) => {
@@ -51,20 +47,22 @@ export const logoutUser = createAsyncThunk(
     }
 );
 
-// Auth slice
 export const authSlice = createSlice({
     name: 'auth',
     initialState,
-    reducers: {},
+    reducers: {
+        setLoading(state, action) {
+            state.loading = action.payload; 
+        },
+    },
     extraReducers: (builder) => {
         builder
-            // Handle signup
             .addCase(signupUser.pending, (state) => {
                 state.loading = true;
                 state.error = null;
             })
             .addCase(signupUser.fulfilled, (state, action) => {
-                state.loading = false;
+                // state.loading = false;
                 state.user = action.payload.user;
                 state.token = action.payload.token;
             })
@@ -72,13 +70,12 @@ export const authSlice = createSlice({
                 state.loading = false;
                 state.error = action.payload;
             })
-            // Handle login
             .addCase(loginUser.pending, (state) => {
                 state.loading = true;
                 state.error = null;
             })
             .addCase(loginUser.fulfilled, (state, action) => {
-                state.loading = false;
+                // state.loading = false;
                 state.user = action.payload.user;
                 state.token = action.payload.token;
             })
@@ -86,13 +83,12 @@ export const authSlice = createSlice({
                 state.loading = false;
                 state.error = action.payload;
             })
-            // Handle logout
             .addCase(logoutUser.pending, (state) => {
                 state.loading = true;
                 state.error = null;
             })
             .addCase(logoutUser.fulfilled, (state) => {
-                state.loading = false;
+                // state.loading = false;
                 state.user = null;
                 state.token = null;
             })
@@ -103,6 +99,6 @@ export const authSlice = createSlice({
     },
 });
 
-export const { } = authSlice.actions; // No reducers needed for now
+export const { setLoading } = authSlice.actions;
 
 export default authSlice.reducer;

@@ -2,12 +2,10 @@
 
 import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
-import {
-  createUserWithEmailAndPassword, sendEmailVerification, onAuthStateChanged
-} from 'firebase/auth';
-import { auth } from '../../lib/firebase';
+import RegisterationForm from './RegisterationForm';
+import SigninForm from './SigninForm';
 
-const SignInModal = ({ isVisible, onClose, handleSignInWithEmail }) => {
+const SignInModal = ({ isVisible, onClose, handleSignInWithEmail, handleWriteClick }) => {
   if (!isVisible) return null;
 
   return (
@@ -71,7 +69,7 @@ const SignInModal = ({ isVisible, onClose, handleSignInWithEmail }) => {
         </div>
         <div className="signIn mt-0 leading-3">
           <span className="font-sans">No account?
-            <button className="ml-2 text-green-800 font-semibold">Create one</button>
+            <button className="ml-2 text-green-800 font-semibold" onClick={handleWriteClick}>Create one</button>
           </span>
         </div>
 
@@ -150,7 +148,7 @@ const WriteModal = ({ isVisible, onClose, handleSignInClick, handleSignUpWithEma
   );
 };
 
-const SignInWithEmail = ({ isVisible, onClose, handleSignInClick }) => {
+const SignInWithEmail = ({ isVisible, onClose, handleSignInClick, handleWriteClick, closeModal }) => {
   if (!isVisible) return null;
 
   return (
@@ -159,27 +157,13 @@ const SignInWithEmail = ({ isVisible, onClose, handleSignInClick }) => {
         <div className="closeForm absolute top-3 right-3">
           <svg onClick={() => onClose()} width="29" height="29" className="cursor-pointer ie fq if hm"><path fillRule="evenodd" d="m20.13 8.11-5.61 5.61-5.609-5.61-.801.801 5.61 5.61-5.61 5.61.801.8 5.61-5.609 5.61 5.61.8-.801-5.609-5.61 5.61-5.61"></path></svg>
         </div>
-        <h2 className='text-3xl font-serif mt-24'>Sign in with email</h2>
-        <div className="flex flex-col w-3/5 items-center gap-2 p-10">
-          <p className='text-center text-base font-sans leading-5'>Enter the email address associated with your account, and we’ll send a magic link to your inbox.</p>
-        </div>
-        <form className="signIn mt-14 w-[42%]">
-          <div>
-            <label htmlFor="small-input" className="block mb-2 text-sm font-medium text-black text-center">Your email</label>
-            <input type="email" id="small-input" className="block w-full p-2 text-gray-900 border border-gray-50  bg-gray-50 text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-200  dark:placeholder-gray-600 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500" />
-          </div>
-          <div className="button flex items-center justify-center mt-11"><button className='px-16 rounded-full py-2 bg-slate-950 text-white text-base'>Continue</button></div>
-        </form>
-        <div className="allSignInOptions mt-9 text-emerald-700 flex items-center cursor-pointer">
-          <svg width="19" height="19" className=" text-emerald-700 cl io ip" viewBox="0 0 19 19"><path fill='currentColor' fillRule="evenodd" d="M11.47 13.969 6.986 9.484 11.47 5l.553.492L8.03 9.484l3.993 3.993z"></path></svg>
-          <span onClick={handleSignInClick}>All sign in options</span>
-        </div>
+        <SigninForm handleSignInClick={handleSignInClick} handleWriteClick={handleWriteClick} closeModal={closeModal}/>
       </div>
     </div>
   );
 }
 
-const SignUpWithEmail = ({ isVisible, onClose, handleWriteClick }) => {
+const SignUpWithEmail = ({ isVisible, onClose, handleWriteClick, handleSignInClick }) => {
 
   if (!isVisible) return null
   return (
@@ -188,25 +172,7 @@ const SignUpWithEmail = ({ isVisible, onClose, handleWriteClick }) => {
         <div className="closeForm absolute top-3 right-3">
           <svg onClick={() => onClose()} width="29" height="29" className="cursor-pointer ie fq if hm"><path fillRule="evenodd" d="m20.13 8.11-5.61 5.61-5.609-5.61-.801.801 5.61 5.61-5.61 5.61.801.8 5.61-5.609 5.61 5.61.8-.801-5.609-5.61 5.61-5.61"></path></svg>
         </div>
-        <h2 className='text-3xl font-serif mt-24'>Sign up with email</h2>
-        <div className="flex flex-col w-3/5 items-center gap-2 p-10">
-          <p className='text-center text-base font-sans leading-5'>Enter your email address to create an account.</p>
-        </div>
-        <form className="signIn mt-9 w-[42%]">
-          <div>
-            <label htmlFor="small-input" className="block mb-2 text-sm font-medium text-black text-center">Your email</label>
-            <input id="small-input" className="block w-full p-2 text-gray-900 border border-gray-50  bg-gray-50 text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-200  dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500" />
-          </div>
-          <div className="button flex items-center justify-center mt-11"><button className='px-16 rounded-full py-2 bg-slate-950 text-white text-base' type='submit'>Continue</button></div>
-        </form>
-        <div className="allSignInOptions mt-9 text-emerald-700 flex items-center cursor-pointer">
-          <svg width="19" height="19" className=" text-emerald-700 cl io ip" viewBox="0 0 19 19"><path fill='currentColor' fillRule="evenodd" d="M11.47 13.969 6.986 9.484 11.47 5l.553.492L8.03 9.484l3.993 3.993z"></path></svg>
-          <span onClick={handleWriteClick}>All sign up options</span>
-        </div>
-        <div className="reCaptcha font-sans text-xs text-center w-3/5 mt-9 text-gray-600">
-          <p className=' px-4'>This site is protected by reCAPTCHA Enterprise and the <br />
-            <span className="underline cursor-pointer"> Google Privacy Policy</span> and <span className="underline cursor-pointer">Terms of Service</span> apply.</p>
-        </div>
+        <RegisterationForm handleSignInClick={handleSignInClick} handleWriteClick={handleWriteClick} />
       </div>
     </div>
   );
@@ -272,9 +238,9 @@ const Navbar = () => {
       </nav>
 
       <WriteModal isVisible={isWriteModalVisible} onClose={closeModal} handleSignInClick={handleSignInClick} handleSignUpWithEmail={handleSignUpWithEmail} />
-      <SignInModal isVisible={isSignInModalVisible} onClose={closeModal} handleSignInWithEmail={handleSignInWithEmail} />
-      <SignInWithEmail isVisible={isSignInWithEmail} onClose={closeModal} handleSignInClick={handleSignInClick} />
-      <SignUpWithEmail isVisible={isSignUpWithEmail} onClose={closeModal} handleWriteClick={handleWriteClick} />
+      <SignInModal isVisible={isSignInModalVisible} onClose={closeModal} handleSignInWithEmail={handleSignInWithEmail} handleWriteClick={handleWriteClick} />
+      <SignInWithEmail isVisible={isSignInWithEmail} onClose={closeModal} handleSignInClick={handleSignInClick} handleWriteClick={handleWriteClick} closeModal={closeModal}/>
+      <SignUpWithEmail isVisible={isSignUpWithEmail} onClose={closeModal} handleWriteClick={handleWriteClick} handleSignInClick={handleSignInClick} />
 
     </>
   )

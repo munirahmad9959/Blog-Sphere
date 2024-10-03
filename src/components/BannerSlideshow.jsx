@@ -26,7 +26,7 @@ const BannerSlideshow = ({ slides, interval = 2000 }) => {
             <div className={`imgContainer h-1/2 absolute overflow-hidden transition-opacity duration-500 ease-in-out ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
                 <Image
                     src={currentSlide.image}
-                    alt="Banner"
+                    alt="Banner" width={1000} height={1000}
                     className="w-full h-full object-cover bg-center bg-cover"
                 />
                 <div className="absolute bottom-4 left-4 bg-yellow-500 rounded-full px-7 py-2 flex items-center">
@@ -40,7 +40,7 @@ const BannerSlideshow = ({ slides, interval = 2000 }) => {
                     <h1 className="text-[24px] font-semibold text-[#242424] leading-[28px] tracking-tighter">{currentSlide.title}</h1>
 
                     <div className="avatar flex items-center gap-5 mt-20">
-                        <Image src="/noavatar.png" alt="avatar" className='w-[50px] h-[50px] rounded-full bg-gray-600' />
+                        <Image src="/noavatar.png" alt="avatar" width={50} height={50} className='w-[50px] h-[50px] rounded-full bg-gray-600' />
                         <div className="titles">
                             <p className="text-[#242424] text-[18px] leading-[24px] tracking-tighter">{currentSlide.author}</p>
                             <p className="text-[#242424] text-[18px] leading-[24px] tracking-tighter">{currentSlide.jobTitle}</p>
