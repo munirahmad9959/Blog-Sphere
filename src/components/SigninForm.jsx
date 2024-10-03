@@ -84,7 +84,7 @@ const SigninForm = ({ handleSignInClick, handleWriteClick, closeModal }) => {
             </form>
 
             <div className="mt-4 text-center">
-                <p className="text-sm">Don't have an account?
+                <p className="text-sm">Don&apos;t have an account?
                     <a href="#" className="text-purple-600 hover:underline" onClick={handleWriteClick}> Sign Up</a>
                 </p>
                 <p className="text-sm">Need help?

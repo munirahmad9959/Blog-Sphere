@@ -111,7 +111,7 @@ const UserNavbar = ({ email }) => {
 
           {/* Profile img */}
           <li className='relative'>
-            <Image src={'/noavatar.png'} width={30} height={30} className='rounded-full hover:bg-gray-950 cursor-pointer' onClick={handleImageOptions} />
+            <Image src={'/noavatar.png'} width={30} height={30} alt='profileImg' className='rounded-full hover:bg-gray-950 cursor-pointer' onClick={handleImageOptions} />
             {showDropDown && (
               <div ref={dropDownRef} className="dropDown absolute right-0 mt-3 w-48 bg-white border border-gray-200 rounded-lg shadow-lg p-4">
                 <ul className='space-y-2'>
