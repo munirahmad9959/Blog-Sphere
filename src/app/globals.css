@@ -53,6 +53,17 @@
   font-style: normal;
 }
 
+@layer scrollbarUtilities {
+  .scrollbar-hide {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, and Opera */
+  }
+}
+
 /* Apply the custom font globally or to specific elements */
 body {
   font-family: "CustomFont", sans-serif;

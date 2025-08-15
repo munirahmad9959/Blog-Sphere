@@ -5,28 +5,30 @@ import { useDispatch, useSelector } from 'react-redux';
 import { logoutUser, setLoading } from '../../state';
 import { useRouter } from 'next/navigation';
 import PlayLoading from '@/app/PlayLoading';
+import { getAuth } from 'firebase/auth';
 
-const UserNavbar = ({ email }) => {
+const UserNavbar = () => {
   const [showDropDown, setShowDropDown] = useState(false);
   const dropDownRef = useRef(null);
 
   const dispatch = useDispatch();
+  const user = getAuth().currentUser;
   const router = useRouter();
   const loading = useSelector((state) => state.auth.loading);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (dropDownRef.current && !dropDownRef.current.contains(event.target)) {
-        setShowDropDown(false); // Close the dropdown if clicked outside
+        setShowDropDown(false);
       }
     };
 
-    // Add event listener when dropdown is open
+
     if (showDropDown) {
       document.addEventListener('mousedown', handleClickOutside);
     }
 
-    // Clean up the event listener
+
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
@@ -43,18 +45,18 @@ const UserNavbar = ({ email }) => {
   };
 
   const handleLogout = async () => {
-    dispatch(setLoading(true)); // Start loading
+    dispatch(setLoading(true));
 
     try {
-      await dispatch(logoutUser()); // Dispatch logoutUser and wait for it
+      await dispatch(logoutUser());
 
       setTimeout(() => {
-        router.push('/'); // Navigate to home after logout
-        dispatch(setLoading(false)); // Stop loading after navigation
+        router.push('/');
+        dispatch(setLoading(false));
       }, 1000);
     } catch (err) {
       console.error('Logout failed:', err);
-      dispatch(setLoading(false)); // Stop loading in case of an error
+      dispatch(setLoading(false));
     }
   };
 
@@ -117,7 +119,7 @@ const UserNavbar = ({ email }) => {
                   <li className='hover:bg-gray-100 px-1 py-1 rounded'>Stories</li>
                   <li className='hover:bg-gray-100 px-1 py-1 rounded cursor-pointer' onClick={handleLogout}>
                     Sign out
-                    <span className='block text-sm text-gray-500 mt-1'>{maskEmail(email)}</span>
+                    <span className='block text-sm text-gray-500 mt-1'>{maskEmail(user.email)}</span>
                   </li>
                 </ul>
               </div>

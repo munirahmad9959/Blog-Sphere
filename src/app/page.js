@@ -5,9 +5,9 @@ import Banner from '@/components/Banner';
 import Footer from '@/components/Footer';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from '../../lib/firebase';
-import UserNavbar from '@/components/UserNavbar';
 import { useSelector } from 'react-redux';
 import PlayLoading from './PlayLoading';
+import UserPage from '@/components/UserPage';
 
 export default function Home() {
   const [user, firebaseLoading] = useAuthState(auth);
@@ -27,7 +27,7 @@ export default function Home() {
       <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
       {user ? (
         <div className="h-screen overflow-x-hidden">
-          <UserNavbar email={user.email} />
+          <UserPage />
         </div>
       ) : (
         <div className="h-screen overflow-x-hidden">
